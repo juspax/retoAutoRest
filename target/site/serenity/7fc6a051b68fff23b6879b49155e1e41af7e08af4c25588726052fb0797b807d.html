@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Validate user creation</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css"><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.11.3/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.11.3/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+<!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.11.3/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.11.3/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<!-- ImgPreview -->
+<script src="scripts/imgpreview.full.jquery.js" type="text/javascript"></script>
+</head>
+
+<body class="results-page">
+
+
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Serenity BDD Report</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+        <span class="breadcrumbs">
+            <a href="index.html" class="breadcrumbs">Home</a>
+
+        > Validate user creation
+        </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 22-03-2023 11:25</span>
+    <br style="clear:left"/>
+</div>
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                                <div>
+                                    <h3 class="discreet-story-header">
+                                        <i class="fs-2 bi bi-chat-left-quote large-icon"></i>
+                                        <span class="story-header-title">Create User In Pet Shop</span>
+                                    </h3>
+                                </div>
+
+                                <div class="requirementNarrative">Background: register on the pet shop platform
+                                        <p></p>
+                                </div>
+                        </td>
+                        <td valign="top">
+                            <p class="tag">
+                                    <span class="badge example-tag tag-badge" style="background:default;">
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;"
+                                                                      href="e921599501d7111069704763455303d1f2128839cf5aa3f11db4adea68d1bc35.html">All
+                                    (tag)</a>
+                                </span>
+                                    <span class="badge example-tag tag-badge" style="background:default;">
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;"
+                                                                      href="70be359e7338540f790f22ebc710a1ca1eb73c400c5c2e70c047b120a0312502.html">Case One
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon fa-2x' title='FAILURE'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="failing-color">
+                                    Validate user creation
+                                        <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+</div>
+</div>
+
+<div class="clr"></div>
+
+    <div class="story-title">
+        <h3 class="story-header">Scenario Outline</h3>
+
+        <div class="scenario">When creation of a user<br><table class='embedded'><tbody><tr><td>&lt;id&gt;</td><td>&lt;username&gt;</td><td>&lt;firstName&gt;</td><td>&lt;lastName&gt;</td><td>&lt;email&gt;</td><td>&lt;password&gt;</td><td>&lt;phone&gt;</td><td>&lt;userStatus&gt;</td></tr></tbody></table><br>Then verify user creation with status 200</div>
+
+    </div>
+
+<div id="beforetable"></div>
+
+
+        <h3 class="story-header">Examples:&nbsp;</h3>
+            <div class="requirementNarrative"></div>
+
+
+            <p class="example-tag">
+            </p>
+
+        <div class="example-table test-report">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Phone</th>
+                        <th>User Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="test-FAILURE"><a href="#0">1</a></td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">23</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">Juan23</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">Camilo</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">Penuela</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">juanC1@yopmail.com</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">juan123</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">30012345678</a>
+                            </td>
+                            <td class="test-FAILURE"><a
+                                        href="#0">0</a>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<div id="tablecontents">
+    <div>
+        <table class="step-table">
+            <tr class="step-titles">
+                <th width="65">
+                </th>
+                <th class="step-description-column greentext">
+                    Steps
+                </th>
+
+                <th width="130" class="greentext">Outcome</th>
+                <th width="100" class="greentext"><i title="Duration" class="bi bi-stopwatch"></i></th>
+            </tr>
+            <tr class="step-table-separator">
+                <td colspan="5"></td>
+            </tr>
+
+                <tr class="test-FAILURE">
+
+                    <td width="50" class="step-icon">
+                        <a name="0"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection0 failure-icon"
+                                   style="margin-left: 20px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
+                               style="display:block;">
+                                <span class="top-level-step">
+                                                1: Validate user creation ({id=23, username=Juan23, firstName=Camilo, lastName=Penuela, email=juanC1@yopmail.com, password=juan123, phone=30012345678, userStatus=0})
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="top-level-step">FAILURE</span></td>
+                    <td width="100"><span class="top-level-step">7s 572ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-0"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection0-0 success-icon"
+                                   style="margin-left: 40px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0')"
+                               style="display:block;">
+                                <span class="nested-step">
+                                                When creation of a user<br><table class='embedded'><tbody><tr><td>23</td><td>Juan23</td><td>Camilo</td><td>Penuela</td><td>juanC1@yopmail.com</td><td>juan123</td><td>30012345678</td><td>0</td></tr></tbody></table>
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">7s 310ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0-0" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="90" class="step-icon">
+                        <a name="0-0-0"></a>
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0-0')"
+                               style="display:block">
+                                <i class="bi bi-plus-square imgstepSection0-0-0 success-icon"
+                                   style="margin-left: 60px; float:left; padding-right:5px"></i>
+                            </a>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                            <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0-0-0')"
+                               style="display:block;">
+                                <span class="nested-step">
+                                                Create user: {"id":23,"username":"Juan23","firstName":"Camilo","lastName":"Penuela","email":"juanC1@yopmail.com","password":"juan123","phone":"30012345678","userStatus":0}
+                                        </span>
+                            </a>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">6s 495ms</span></td>
+                </tr>
+                    <tr>
+                        <td colspan="5">
+                            <table id="stepSection0-0-0" class="step-table-nested" style="display:none;">
+                <tr class="test-SUCCESS">
+
+                    <td width="110" class="step-icon">
+                        <a name="0-0-0-0"></a>
+                            <span style="margin-left: 80px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon ' title='SUCCESS'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                POST https://petstore.swagger.io/v2/user
+                                        </span>
+                            <span class="evidence">
+                                        <span class="piece-of-evidence">
+                <span>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="collapse"
+                                data-target="#restModal-REST-4">
+                            REST Query
+                        </button>
+                    </span>
+                <!-- Modal -->
+                <div class="rest-query-details">
+                    <div class="collapse multi-collapse" id="restModal-REST-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Response</h4>
+                                    <p>URL: https://petstore.swagger.io/v2/user</p>
+                                    <p>Status code: 500</p>
+                                    <p>Content Type: text/plain</p>
+                                    <h4>Request Headers</h4>
+                                    <pre>Content-Type:=application/json<br>Accept=*/*<br>Content-Type=text/plain; charset=ISO-8859-1</pre>
+                                    <h4>Content Body</h4>
+                                    <pre>{&quot;id&quot;:23,&quot;username&quot;:&quot;Juan23&quot;,&quot;firstName&quot;:&quot;Camilo&quot;,&quot;lastName&quot;:&quot;Penuela&quot;,&quot;email&quot;:&quot;juanC1@yopmail.com&quot;,&quot;password&quot;:&quot;juan123&quot;,&quot;phone&quot;:&quot;30012345678&quot;,&quot;userStatus&quot;:0}</pre>
+                                    <h4>Response Headers</h4>
+                                    <pre>Date: Wed, 22 Mar 2023 16:25:13 GMT<br>Content-Type: text/html; charset=ISO-8859-1<br>Content-Length: 10261<br>Connection: keep-alive<br>Access-Control-Allow-Origin: *<br>Access-Control-Allow-Methods: GET, POST, DELETE, PUT<br>Access-Control-Allow-Headers: Content-Type, api_key, Authorization<br>Cache-Control: must-revalidate,no-cache,no-store<br>Server: Jetty(9.2.9.v20150224)</pre>
+                                <h4>Response Body</h4>
+                                    <pre>&lt;html&gt;<br>  &lt;head&gt;<br>    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;<br>    &lt;title&gt;Error 500 Server Error&lt;/title&gt;<br>  &lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h2&gt;HTTP ERROR 500&lt;/h2&gt;<br>    &lt;p&gt;Problem accessing /v2/user. Reason:<br>&lt;/p&gt;<br>    &lt;pre&gt;    Server Error&lt;/pre&gt;<br>    &lt;h3&gt;Caused by:&lt;/h3&gt;<br>    &lt;pre&gt;javax.ws.rs.WebApplicationException: java.lang.IllegalArgumentException: Error parsing media type ': application/json'<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.clientError(HttpHelper.java:265)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:91)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.ContainerRequest.getMediaType(ContainerRequest.java:646)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.filterFormParameters(WebComponent.java:832)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:407)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:538)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:716)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:808)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)<br>&nbsp; &nbsp; &nbsp; &nbsp;at io.swagger.sample.util.ApiOriginFilter.doFilter(ApiOriginFilter.java:32)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:577)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:215)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:110)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.Server.handle(Server.java:497)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)<br>&nbsp; &nbsp; &nbsp; &nbsp;at java.lang.Thread.run(Thread.java:748)<br>Caused by: java.lang.IllegalArgumentException: Error parsing media type ': application/json'<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:79)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:53)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.ws.rs.core.MediaType.valueOf(MediaType.java:119)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;... 30 more<br>Caused by: java.text.ParseException: Next event is not a Token<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.header.reader.HttpHeaderReader.nextToken(HttpHeaderReader.java:98)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.valueOf(MediaTypeProvider.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;... 33 more<br>&lt;/pre&gt;<br>    &lt;h3&gt;Caused by:&lt;/h3&gt;<br>    &lt;pre&gt;java.lang.IllegalArgumentException: Error parsing media type ': application/json'<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:79)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:53)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.ws.rs.core.MediaType.valueOf(MediaType.java:119)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.ContainerRequest.getMediaType(ContainerRequest.java:646)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.filterFormParameters(WebComponent.java:832)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:407)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:538)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:716)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:808)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)<br>&nbsp; &nbsp; &nbsp; &nbsp;at io.swagger.sample.util.ApiOriginFilter.doFilter(ApiOriginFilter.java:32)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:577)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:215)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:110)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.Server.handle(Server.java:497)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)<br>&nbsp; &nbsp; &nbsp; &nbsp;at java.lang.Thread.run(Thread.java:748)<br>Caused by: java.text.ParseException: Next event is not a Token<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.header.reader.HttpHeaderReader.nextToken(HttpHeaderReader.java:98)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.valueOf(MediaTypeProvider.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;... 33 more<br>&lt;/pre&gt;<br>    &lt;h3&gt;Caused by:&lt;/h3&gt;<br>    &lt;pre&gt;java.text.ParseException: Next event is not a Token<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.header.reader.HttpHeaderReader.nextToken(HttpHeaderReader.java:98)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.valueOf(MediaTypeProvider.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.core.impl.provider.header.MediaTypeProvider.fromString(MediaTypeProvider.java:53)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.ws.rs.core.MediaType.valueOf(MediaType.java:119)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:89)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.server.impl.model.HttpHelper.getContentType(HttpHelper.java:77)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.ContainerRequest.getMediaType(ContainerRequest.java:646)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.filterFormParameters(WebComponent.java:832)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:407)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:538)<br>&nbsp; &nbsp; &nbsp; &nbsp;at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:716)<br>&nbsp; &nbsp; &nbsp; &nbsp;at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:808)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669)<br>&nbsp; &nbsp; &nbsp; &nbsp;at io.swagger.sample.util.ApiOriginFilter.doFilter(ApiOriginFilter.java:32)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:577)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:223)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:215)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:110)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.Server.handle(Server.java:497)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)<br>&nbsp; &nbsp; &nbsp; &nbsp;at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)<br>&nbsp; &nbsp; &nbsp; &nbsp;at java.lang.Thread.run(Thread.java:748)<br>&lt;/pre&gt;<br>    &lt;hr/&gt;<br>    &lt;i&gt;<br>      &lt;small&gt;Powered by Jetty://&lt;/small&gt;<br>    &lt;/i&gt;<br>    &lt;hr/&gt;<br>  &lt;/body&gt;<br>&lt;/html&gt;</pre>
+                                    <h4>Response Cookies</h4>
+                                    <pre></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                        </span>
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">001ms</span></td>
+                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                <tr class="test-FAILURE">
+
+                    <td width="70" class="step-icon">
+                        <a name="0-1"></a>
+                            <span style="margin-left: 40px;"
+                                  class="nested-group-icon"><a href='##beforetable'><i class='bi bi-x-circle-fill failure-icon ' title='FAILURE'></i></a>
+                                </span>
+                    </td>
+
+                    <td class="step-description-column">
+                        <div class="step-description">
+                                <span class="nested-group-step">
+                                                Then verify user creation with status 200
+                                        </span>
+                            <span class="evidence">
+                                </span>
+                        </div>
+                    </td>
+
+                    <td width="130"><span class="nested-group-step">FAILURE</span></td>
+                    <td width="100"><span class="nested-group-step">130ms</span></td>
+                </tr>
+                    <tr class="test-FAILURE">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="3" class="error-message-cell">
+
+
+    <div style="display:block">
+        <div class="table">
+            <div class="row">
+                <div class="col-sm-10" style="padding-left:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+                    <span class="error-message error-message-title">java.lang.AssertionError: 1 expectation failed.<br>Expected status code &lt;200&gt; but was &lt;500&gt;.<br></span>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-warning details-button" data-toggle="collapse" href="#stacktraceModal-5"
+                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="bi bi-eye"></i> More details</a>
+                </div>
+             </div>
+        </div>
+    <div>
+
+    <!-- Details Section -->
+    <div class="row stacktrace-details">
+      <div class="col">
+        <div class="collapse multi-collapse" id="stacktraceModal-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4>java.lang.AssertionError </h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <pre>io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)<br />io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy:-1)<br />io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)<br />io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)<br />io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)<br />io.swagger.petstore.definitions.CreateUserDefinitions.verifyUserCreationWithStatus(CreateUserDefinitions.java:26)<br />✽.verify user creation with status 200(file:///D:/Automatizacion/retoServicios/src/test/resources/create_user.feature:14)<br /></pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                        </td>
+                    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            <tr class="test-FAILURE">
+                    <td colspan="2"></td>
+                <td width="130"><span class="top-level-step"><em>FAILURE</em></span></td>
+                <td width="100"><span class="top-level-step"><em>7.97s</em></span></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div id="beforefooter"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="version">Serenity BDD version 3.3.4</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function toggleDiv(divId) {
+        $("#" + divId).toggle();
+        var imgsrc = $(".img" + divId).attr('src');
+        if (imgsrc == 'images/plus.png') {
+            $(".img" + divId).attr("src", function () {
+                return "images/minus.png";
+            });
+
+        } else {
+            $(".img" + divId).attr("src", function () {
+                return "images/plus.png";
+            });
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    $(document).ready(function () {
+        $('img.screenshot').imgPreview({
+            imgCSS: {
+                width: '500px'
+            },
+            distanceFromCursor: {top: 10, left: -200}
+        });
+    });
+
+    //]]>
+</script>
+<div id="imgPreviewContainer" style="position: absolute; top: 612px; left: 355px; display: none; " class=""><img
+            src="" style="display: none; "></div>
+<div id="imgPreviewContainer2" style="position: absolute; top: 925px; left: 320px; display: none; " class="">
+    <img style="width: 200px; display: none; " src=""></div>
+<div id="imgPreviewWithStyles" style="position: absolute; top: 1272px; left: 321px; display: none; " class="">
+    <img style="height: 200px; opacity: 1; display: none; " src=""></div>
+<div id="imgPreviewWithStyles2" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+<div id="imgPreviewWithStyles3" style="display: none; position: absolute; "><img style="height: 200px; "></div>
+
+</div>
+</body>
+</html>
