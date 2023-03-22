@@ -15,12 +15,15 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CreateUserDefinitions {
+
+    // Se llaman los pasos desde los diferentes Steps
     @Steps
     private CreateUserStep createUserStep;
 
     @Steps
     private PetRequestStep petRequestStep;
 
+    // Accesiones a realizar en el caso de prueba uno
     @When("creation of a user")
     public void creationOfAUser(List<List<String>> listCreate) {
         UserModels userModel = new UserModels(listCreate);
@@ -34,6 +37,7 @@ public class CreateUserDefinitions {
     }
 
 
+    // Accesiones a realizar en el caso de prueba dos
     @When("creation of a pet request")
     public void creationOfAPetRequest(List<List<String>> listPetRequest) {
         PetRequestModels petRequestModels = new PetRequestModels(listPetRequest);

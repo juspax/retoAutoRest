@@ -14,7 +14,7 @@ public class UserModels {
     private String phone;
     private Integer userStatus;
 
-
+    // Se crea modelo para la clase de la peticion
     public UserModels(List<List<String>> listCreate) {
 
         this.id = Integer.valueOf(listCreate.get(0).get(0));

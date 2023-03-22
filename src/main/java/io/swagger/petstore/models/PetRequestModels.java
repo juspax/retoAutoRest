@@ -2,6 +2,8 @@ package io.swagger.petstore.models;
 
 import java.util.List;
 
+
+// Se crea modelo para la clase de la peticion
 public class PetRequestModels {
 
     private Integer id;
@@ -12,6 +14,7 @@ public class PetRequestModels {
     private Boolean complete;
 
 
+    // Se inicializan los valores de la clase
     public PetRequestModels(List<List<String>> listPetRequest){
         this.id = Integer.valueOf(listPetRequest.get(0).get(0));
         this.petId = Integer.valueOf(listPetRequest.get(0).get(1));
@@ -21,6 +24,7 @@ public class PetRequestModels {
         this.complete = Boolean.valueOf(listPetRequest.get(0).get(5));
     }
 
+    // se crean los getter an setter
     public Integer getId() {
         return id;
     }
