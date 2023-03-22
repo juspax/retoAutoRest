@@ -14,4 +14,13 @@ Feature: create user in pet shop
     Then verify user creation with status 200
     Examples:
       | id | username | firstName | lastName | email              | password | phone       | userStatus |
-      | 23 | Juan23   | Camilo    | Penuela  | juanC1@yopmail.com | juan123  | 30012345678 | 0          |
+      | 24 | Juan24   | Carlos    | Penuela  | juanC1@yopmail.com | juan123  | 30012345678 | 0          |
+
+  @CaseTwo
+  Scenario Outline: Place an order for a pet
+    When creation of a pet request
+      | <id> | <petId> | <quantity> | <shipDate> | <status> | <complete> |
+    Then check in the body of the Json contains "<status>" and the status is <statusCode>
+    Examples:
+      | id | petId | quantity | shipDate                 | status | complete | statusCode |
+      | 8  | 8     | 8        | 2023-03-21T16:55:12.523Z | placed | true     | 200        |

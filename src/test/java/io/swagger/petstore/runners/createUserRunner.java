@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/create_user.feature",
-        tags = "@All",
+        tags = "@CaseTwo",
         glue = "io.swagger.petstore",
         snippets = CucumberOptions.SnippetType.CAMELCASE)
 

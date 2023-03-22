@@ -8,7 +8,6 @@ public class TransformJsonUtils {
     public static <T> String transform(T UserModel) {
         Gson gson = new Gson();
         String userJson = gson.toJson(UserModel);
-        System.out.println(userJson);
         return userJson;
     }
 

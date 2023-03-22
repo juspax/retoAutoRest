@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="create user in pet shop" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-03-22T16:25:05" hostname="LAPTOP-ME7AF93M" time="8.528">
+<testsuite name="create user in pet shop" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-03-22T19:44:49" hostname="LAPTOP-ME7AF93M" time="4.586">
   <properties/>
-  <testcase name="Validate user creation" classname="create user in pet shop" time="8.528">
+  <testcase name="Place an order for a pet" classname="create user in pet shop" time="4.586">
     <failure message="java.lang.AssertionError: 1 expectation failed.&#10;Expected status code &lt;200&gt; but was &lt;500&gt;.&#10;" type="java.lang.AssertionError">java.lang.AssertionError: 1 expectation failed.
 Expected status code &lt;200&gt; but was &lt;500&gt;.
 
@@ -39,11 +39,11 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
 	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
 	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
-	at io.swagger.petstore.definitions.CreateUserDefinitions.verifyUserCreationWithStatus(CreateUserDefinitions.java:26)
-	at ✽.verify user creation with status 200(file:///D:/Automatizacion/retoServicios/src/test/resources/create_user.feature:14)
+	at io.swagger.petstore.definitions.CreateUserDefinitions.checkInTheBodyOfTheJsonContainsAndTheStatusIs(CreateUserDefinitions.java:45)
+	at ✽.check in the body of the Json contains &quot;placed&quot; and the status is 200(file:///D:/Automatizacion/retoServicios/src/test/resources/create_user.feature:23)
 </failure>
   </testcase>
-  <system-out><![CDATA[{"id":23,"username":"Juan23","firstName":"Camilo","lastName":"Penuela","email":"juanC1@yopmail.com","password":"juan123","phone":"30012345678","userStatus":0}
+  <system-out><![CDATA[{"id":7,"petId":7,"quantity":7,"shipDate":"2023-03-21T16:55:12.523Z","status":"placed","complete":true}
 ]]></system-out>
   <system-err><![CDATA[[Test worker] INFO io.cucumber.core.plugin.SerenityReporter - Running feature from file:///D:/Automatizacion/retoServicios/src/test/resources/create_user.feature
 [Test worker] WARN io.cucumber.core.plugin.SerenityReporter - Feature from file:///D:/Automatizacion/retoServicios/src/test/resources/create_user.feature is not under the 'features' directory. Requirements report will not be correctly generated!
@@ -53,7 +53,7 @@ Expected status code &lt;200&gt; but was &lt;500&gt;.
    | |   | _|  \__ \   | |     \__ \   | |    / _ \  |   /   | |   | _|  | |) |
    |_|   |___| |___/   |_|     |___/   |_|   /_/ \_\ |_|_\   |_|   |___| |___/ 
 
-Validate user creation(create-user-in-pet-shop;validate-user-creation)
+Place an order for a pet(create-user-in-pet-shop;place-an-order-for-a-pet)
 --------------------------------------------------------------------------------
 [Test worker] ERROR  - 
   _____   ___   ___   _____     ___     _     ___   _      ___   ___  
@@ -61,9 +61,9 @@ Validate user creation(create-user-in-pet-shop;validate-user-creation)
    | |   | _|  \__ \   | |     | _|   / _ \   | |  | |__  | _|  | |) |
    |_|   |___| |___/   |_|     |_|   /_/ \_\ |___| |____| |___| |___/ 
 
-Validate user creation
+Place an order for a pet
 -----------------------------------------------------------------------
-[Test worker] ERROR  -     Test failed at step: Then verify user creation with status 200
+[Test worker] ERROR  -     Test failed at step: Then check in the body of the Json contains "placed" and the status is 200
 [Test worker] ERROR  -     1 expectation failed.Expected status code <200> but was <500>.
 ]]></system-err>
 </testsuite>
